@@ -16,6 +16,17 @@ require 'random_data'
  end
  topics = Topic.all
 
+ 50.times do |count|
+  SponsoredPost.seed do |p|
+    p.id = count
+    p.topic_id =  topics.sample.id
+    p.title =  RandomData.random_sentence
+    p.body = RandomData.random_paragraph
+    p.price = rand(1..25)
+  end
+end
+
+
  # Create Posts
  50.times do
  # #1
@@ -40,5 +51,6 @@ require 'random_data'
 
  puts "Seed finished"
  puts "#{Topic.count} topics created"
+ puts "#{SponsoredPost.count} sponsored post created"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
